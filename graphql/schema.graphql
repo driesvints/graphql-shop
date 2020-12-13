@@ -16,3 +16,20 @@ type User {
     created_at: DateTime!
     updated_at: DateTime!
 }
+
+type Product {
+    id: ID!
+    name: String!
+    description: String!
+    price: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type Order {
+    id: ID!
+    user: User!
+    total: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
