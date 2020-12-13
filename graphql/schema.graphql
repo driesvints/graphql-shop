@@ -5,17 +5,24 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 type Query {
+    me: User @auth
     orders: [Order!]! @paginate(defaultCount: 10)
     products: [Product!]! @all
-    showCart(user: Int!): [Product!]
+    showCart(user: Int!): [Product!] @guard
     users: [User!]! @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
 }
 
 type Mutation {
-    addProductToCart(user: Int! product: Int!): [Product!]
-    purchaseProducts(user: Int!): Order!
-    removeProductFromCart(user: Int! product: Int!): [Product!]
+    "Log in to a new session and get the user."
+    login(email: String!, password: String!): User!
+
+    "Log out from the current session, showing the user one last time."
+    logout: User @guard
+
+    addProductToCart(product: Int!): [Product!] @guard
+    purchaseProducts: Order! @guard
+    removeProductFromCart(product: Int!): [Product!] @guard
 }
 
 type User {

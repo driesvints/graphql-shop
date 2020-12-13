@@ -14,11 +14,13 @@ class AddProductToCartTest extends TestCase
     public function testQueries(): void
     {
         $product = Product::factory()->create();
-        User::factory()->create();
+        $user = User::factory()->create();
+
+        $this->be($user);
 
         $this->graphQL(/** @lang GraphQL */ '
             mutation {
-              addProductToCart(user:1 product:1) {
+              addProductToCart(product:1) {
                 id
                 name
                 price

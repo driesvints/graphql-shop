@@ -4,13 +4,13 @@ namespace App\GraphQL\Mutations;
 
 use App\GraphQL\Exceptions\NoCartProducts;
 use App\Models\Product;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class PurchaseProducts
 {
     public function __invoke($_, array $args)
     {
-        $user = User::find($args['user']);
+        $user = Auth::user();
         $products = Product::whereIn('id', (array) $user->cart)->get();
 
         if ($products->isEmpty()) {
