@@ -15,6 +15,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'cart',
     ];
 
     protected $hidden = [
@@ -23,6 +24,7 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
+        'cart' => 'array',
         'email_verified_at' => 'datetime',
     ];
 

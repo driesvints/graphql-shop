@@ -11,6 +11,10 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'total',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

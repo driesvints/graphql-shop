@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::factory()->create(['email' => 'dries@laravel.com', 'name' => 'Dries']);
+        $user = User::factory()->create(['email' => 'dries@example.com', 'name' => 'Dries']);
 
         $products = [
             Product::factory()->create([
@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             ]),
         ];
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 25; $i++) {
             Order::factory()->hasAttached(
                 Arr::random($products, rand(1, count($products)))
             )->create(['user_id' => $user->id]);
