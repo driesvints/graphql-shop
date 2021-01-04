@@ -3,13 +3,13 @@
 namespace App\GraphQL\Queries;
 
 use App\Models\Product;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ShowCart
 {
     public function __invoke($_, array $args)
     {
-        $cart = User::find($args['user'])->cart;
+        $cart = Auth::user()->cart;
 
         return Product::whereIn('id', $cart)->get();
     }

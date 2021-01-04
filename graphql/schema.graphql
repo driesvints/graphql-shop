@@ -8,7 +8,7 @@ type Query {
     me: User @auth
     orders: [Order!]! @paginate(defaultCount: 10)
     products: [Product!]! @all
-    showCart(user: Int!): [Product!] @guard
+    showCart: [Product!] @guard
     users: [User!]! @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
 }
