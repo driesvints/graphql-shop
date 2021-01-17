@@ -11,7 +11,8 @@ class AddProductToCartTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testQueries(): void
+    /** @test */
+    public function it_can_add_a_product_to_the_cart(): void
     {
         $product = Product::factory()->create();
         $user = User::factory()->create();

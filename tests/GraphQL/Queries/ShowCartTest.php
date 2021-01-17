@@ -11,14 +11,17 @@ class ShowCartTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testQueries(): void
+    /** @test */
+    public function it_can_show_the_cart_contents(): void
     {
         $product = Product::factory()->count(3)->create()->first();
-        User::factory()->create(['cart' => [1, 3]]);
+        $user = User::factory()->create(['cart' => [1, 3]]);
+
+        $this->be($user);
 
         $this->graphQL(/** @lang GraphQL */ '
             query ShowCart {
-              showCart(user:1) {
+              showCart {
                 id
                 name
                 description
